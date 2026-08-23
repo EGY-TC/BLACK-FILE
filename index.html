@@ -68,10 +68,31 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
 .sect{margin-top:26px}
 .sect h2{font-family:'Almarai';font-weight:800;font-size:16px;color:var(--paper);display:flex;align-items:center;gap:9px}
 .sect h2:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.cases{display:flex;gap:13px;margin-top:14px;overflow-x:auto;overflow-y:hidden;padding-bottom:6px;
-  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+/* top bar (game-library look) */
+.siteTop{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,#0b0e12,#0b0e12ee 80%,transparent);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.siteTopIn{width:min(720px,100%);margin:0 auto;padding:12px 16px}
+.brandRow{display:flex;align-items:center;gap:10px;font-family:'Almarai';font-weight:800;color:var(--paper);font-size:15px}
+.brandRow em{font-style:normal;font-weight:400;color:var(--muted);font-size:12px}
+.brandRow .be{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;
+  background:rgba(201,147,44,.1);flex-shrink:0}
+.brandRow .be svg{width:15px;height:15px;stroke:var(--amber);fill:none;stroke-width:1.6}
+
+/* search bar (game-library look) */
+.searchBar{display:flex;gap:8px;margin-top:22px}
+.searchIn{flex:1;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:11px;
+  padding:12px 14px;color:var(--paper);font-size:13.5px;font-family:'Tajawal';outline:none;transition:.2s}
+.searchIn:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(201,147,44,.12)}
+.searchIn::placeholder{color:var(--muted)}
+.searchBtn{padding:12px 20px;border-radius:11px;border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(201,147,44,.22),rgba(201,147,44,.08));color:var(--amber2);
+  font-family:'Almarai';font-weight:800;font-size:13px;white-space:nowrap}
+.searchBtn:active{transform:scale(.97)}
+
+/* case poster grid (game-library look) */
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:13px;margin-top:14px}
 .ccard{position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#0b0e12;
-  text-align:right;display:block;flex:0 0 78%;max-width:300px;scroll-snap-align:start;transition:.2s;animation:fu .5s ease backwards}
+  text-align:right;display:block;transition:.2s;animation:fu .5s ease backwards}
 .ccard:active{transform:scale(.99)}
 .ccard .thumb{height:112px;background-size:cover;background-position:center;filter:saturate(.55) brightness(.5);position:relative}
 .ccard .thumb:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0b0e12,transparent 90%)}
@@ -338,6 +359,16 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
 .logcard .la{font-family:'Almarai';font-weight:700;font-size:14.5px;color:var(--paper);line-height:1.95;margin-top:6px}
 .logcard .num{font-family:'IBM Plex Mono';font-size:10px;color:var(--amber);letter-spacing:.14em}
 
+/* poster-grid card compaction (game-library look) */
+.ccard{display:flex;flex-direction:column}
+.ccard .thumb{height:auto;aspect-ratio:2/3;flex-shrink:0}
+.ccard .cin{padding:0 10px 10px;margin-top:-40px}
+.ccard .cn{font-size:13.5px;line-height:1.35}
+.ccard .cs{font-size:8.5px;margin-top:3px}
+.ccard .cb,.ccard .meta,.ccard .ends,.ccard .lockNote{display:none}
+.ccard .revBtn{margin-top:8px;padding:8px;font-size:11px}
+.ccard.soon .cin,.ccard.locked .cin{padding-bottom:12px}
+
 /* ===== v6: تليفون + صوت + دفتر + معرض ===== */
 .hwrap,.wrap{width:min(430px,100%)!important}
 .panelbox{width:min(430px,100%)}
@@ -406,6 +437,14 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
 
 <!-- ============ HOME ============ -->
 <div id="home" class="on">
+  <div class="siteTop">
+    <div class="siteTopIn">
+      <div class="brandRow">
+        <div class="be"><svg viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V5a2 2 0 0 1 2-2h4l2 2"/></svg></div>
+        <span>الملف الأسود <em>— لعبة تحقيق</em></span>
+      </div>
+    </div>
+  </div>
   <div class="hwrap">
     <div class="brandbox">
       <div class="emb"><svg viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V5a2 2 0 0 1 2-2h4l2 2"/></svg></div>
@@ -419,6 +458,11 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
       <input id="nameIn" class="namein" maxlength="18" placeholder="اكتب اسمك هنا…">
       <button class="btn" id="startBtn">ابدأ اللعبة</button>
       <button class="btn ghost" id="contBtn" style="display:none">كمّل من آخر حفظ</button>
+    </div>
+
+    <div class="searchBar">
+      <input id="caseSearch" class="searchIn" placeholder="ادخل اسم القضية…">
+      <button class="searchBtn" id="searchGoBtn">بحث</button>
     </div>
 
     <div class="sect">
@@ -566,7 +610,7 @@ const CASES = [
   img:'rooftop', chs:5, dur:'٧٠ دقيقة', ends:3, open:true, start:'c5_1',
   brief:'الساعة ٩ الصبح، شارع ضيق في حتة قديمة من المدينة. راجل كبير في السن وقع من دور عالي، وكل حد قال «انتحار» قبل ما حد يسأل هو وقع منين. وشباك عمارة تانية، قصاده بالظبط، عليه رشة دم محدش لاحظها إلا انت.'},
  {id:'c6', n:'الرقم الأخير', sub:'قضية ٦ — اختفاء مروة سعيد',
-  img:'c6_street', chs:5, dur:'٩٠ دقيقة', ends:3, open:true, fresh:true, start:'c6_1',
+  img:'street', chs:5, dur:'٩٠ دقيقة', ends:3, open:true, fresh:true, start:'c6_1',
   brief:'مروة سعيد اتلاقى تليفونها لوحده على رصيف فاضي الساعة ٤ الفجر، وهي مش موجودة. مفيش دم، مفيش صوت، مفيش شاهد. بس فيه تليفون بيرن لوحده، وكل رسالة فيه بتقرب أكتر من الحقيقة اللي محدش عايز يشوفها.'}
 ];
 
@@ -2521,8 +2565,9 @@ function buildHome(){
   $('#nameIn').value=s.name||'';
   $('#contBtn').style.display=s.run?'block':'none';
   if(s.run) $('#contBtn').textContent='كمّل: '+(CASES.find(c=>c.id===s.run.cid)||{}).n;
+  const q=($('#caseSearch')&&$('#caseSearch').value||'').trim();
   const box=$('#caseList');box.innerHTML='';
-  CASES.forEach((c,i)=>{
+  CASES.filter(c=>!q || c.n.includes(q) || c.sub.includes(q) || c.brief.includes(q)).forEach((c,i)=>{
     const got=(s.done&&s.done[c.id])||[];
     const done=got.length>0, locked=!!(c.once&&done);
     const b=document.createElement('div');
@@ -2587,6 +2632,11 @@ $('#startBtn').onclick=()=>{
 };
 $('#contBtn').onclick=()=>{const s=save0();if(!s.run)return;st=s.run;openGame();go(st.node,1)};
 $('#nameIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('#startBtn').click()});
+$('#caseSearch').addEventListener('input',()=>buildHome());
+$('#caseSearch').addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault()});
+$('#searchGoBtn').onclick=()=>buildHome();
+
+
 
 function startCase(c){
   const s=save0();
