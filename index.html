@@ -24,16 +24,14 @@
   --r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;overflow:hidden}
+html,body{height:100%;height:100dvh;background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;overflow:hidden}
 #home,#ending,.feed,.gwrap,.bwrap{-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain}
 button{font-family:inherit;cursor:pointer;color:inherit}
 input{font-family:inherit}
 ::-webkit-scrollbar{width:0}
 
-#bg{position:fixed;inset:-2%;pointer-events:none;background-size:cover;background-position:center;
-  filter:saturate(.6) contrast(1.14) brightness(.46);transition:opacity .9s ease;opacity:1;
-  animation:drift 30s ease-in-out infinite alternate}
-@keyframes drift{from{transform:scale(1.06)}to{transform:scale(1.15) translate(1.5%,-1.5%)}}
+#bg{position:fixed;inset:0;pointer-events:none;background-size:cover;background-position:center;
+  filter:saturate(.6) contrast(1.14) brightness(.46);transition:opacity .9s ease;opacity:1}
 #veil{position:fixed;inset:0;pointer-events:none;background:
   radial-gradient(ellipse at 50% 36%,rgba(0,0,0,.1),rgba(4,6,8,.82) 78%),
   linear-gradient(180deg,rgba(4,6,8,.7),rgba(4,6,8,.45) 40%,rgba(4,6,8,.96))}
@@ -70,9 +68,10 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
 .sect{margin-top:26px}
 .sect h2{font-family:'Almarai';font-weight:800;font-size:16px;color:var(--paper);display:flex;align-items:center;gap:9px}
 .sect h2:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.cases{display:grid;gap:13px;margin-top:14px}
+.cases{display:flex;gap:13px;margin-top:14px;overflow-x:auto;overflow-y:hidden;padding-bottom:6px;
+  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .ccard{position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#0b0e12;
-  text-align:right;display:block;width:100%;transition:.2s;animation:fu .5s ease backwards}
+  text-align:right;display:block;flex:0 0 78%;max-width:300px;scroll-snap-align:start;transition:.2s;animation:fu .5s ease backwards}
 .ccard:active{transform:scale(.99)}
 .ccard .thumb{height:112px;background-size:cover;background-position:center;filter:saturate(.55) brightness(.5);position:relative}
 .ccard .thumb:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0b0e12,transparent 90%)}
@@ -104,8 +103,8 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
   gap:8px;padding:calc(10px + var(--st)) 12px 10px;
   background:linear-gradient(180deg,rgba(4,6,8,.94),rgba(4,6,8,0));
   font-family:'IBM Plex Mono';font-size:11px;color:var(--muted)}
-#game{display:none}
-#game.on{display:block}
+#game{display:none;position:fixed;inset:0;height:100%;height:100dvh;flex-direction:column}
+#game.on{display:flex}
 .idbox{display:flex;flex-direction:column;gap:2px;min-width:0;flex-shrink:1}
 .idbox .cs{color:var(--amber);letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .idbox .of{font-family:'Almarai';font-size:12px;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -138,7 +137,7 @@ h1.title{font-family:'Almarai';font-weight:800;font-size:clamp(30px,9vw,46px);co
 #nmsg .go{font-family:'IBM Plex Mono';font-size:10px;color:var(--amber);border:1px solid var(--line);border-radius:8px;padding:6px 9px}
 
 /* ============ STAGE ============ */
-#stage{position:relative;z-index:20;height:100%;display:flex;flex-direction:column;
+#stage{position:relative;z-index:20;flex:1;min-height:0;display:flex;flex-direction:column;
   align-items:center;padding:92px 12px calc(16px + var(--sb));overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain}
 .wrap{width:min(720px,100%);margin:auto 0 0}
 .placeTag{display:flex;align-items:center;gap:8px;justify-content:center;font-family:'IBM Plex Mono';
